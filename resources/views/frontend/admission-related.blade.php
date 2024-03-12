@@ -1,0 +1,52 @@
+@extends('frontend.master')
+@section('content')
+<div id="content-websdevusa" class="site-content-websdevusa space stop ngdc.ac.bd-page content-area">
+	<div class="container main-area-bg">
+		<div class="row">
+			<div class="col-md-9">
+				<article id="post-10">
+					<div class="entry">
+						@if(count($admissions)>0)
+						<table class="newspaper-n">
+							<tbody>
+								<tr>
+									<th align="center">ক্রমিক নং</th>
+                                    <th align="center">টাইটেল</th>
+                                    <th align="center">ক্লাস</th>
+									<th align="left">পিডিএফ</th>
+									<th align="left">ডাউনলোড</th>
+
+								</tr>
+								@foreach ($admissions as $key => $admission)
+									<tr>
+										<td align="center">{{ $key+1 }}</td>
+                                        <td align="center">{{ $admission->title }}</td>
+                                        <td align="center">{{ $admission->class }}</td>
+										<td align="center">{{ $admission->file }}</td>
+										<td align="center">@if($admission->file)
+											<a href="{{ asset('assets/files/uploads/admission-relateds') }}/{{ $admission->file }}" target="_blank"><i class="fa fa-download"></i></a>
+										  @endif</td>
+									</tr>
+								@endforeach
+							</tbody>
+						</table>
+
+					</div>
+					@endif
+				</article>
+
+
+			</div>
+		<!-- End News section -->
+		<!-- content-left -->
+	<!-- End Column 8 -->
+
+
+			@include('frontend.include.side-bar')
+</div>
+</div>
+</section>
+
+
+</div>
+@endsection
