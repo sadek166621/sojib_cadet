@@ -3771,13 +3771,13 @@ ul.usefullink li:before{
   position: absolute; 
   font-size:14px;color:#609513;
 }
-.entry ul li::before {
+/* .entry ul li::before {
     content: "\f14c";
     display: inline-block;
     font-family: FontAwesome;   
     font-size: 14px;color:#609513;
     padding-right: 5px;
-}
+} */
 .front-maps-area iframe{height:380px;}
 .bottom-logos{margin-bottom: 50px;}
 .content-right figure{margin:0px;}

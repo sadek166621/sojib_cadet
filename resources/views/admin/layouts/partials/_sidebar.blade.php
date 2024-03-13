@@ -137,7 +137,29 @@
                   <p class="ml-1">Student Result List</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{ route('admin.result-pdf.list') }}" class="nav-link">
+                  <i class="fas fa-list-alt ml-3"></i>
+                  <p class="ml-1">Result PDF</p>
+                </a>
+              </li>
             </ul>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('admin.page.add') }}" class="nav-link">
+              <i class="nav-icon fas fa-graduation-cap"></i>
+              <p>
+              Pages
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('admin.branches.list') }}" class="nav-link">
+              <i class="nav-icon fas fa-code-branch"></i>
+              <p>
+              Branch List
+              </p>
+            </a>
           </li>
           {{-- <li class="nav-item">
             <a href="{{ route('admin.result.list') }}" class="nav-link">
@@ -152,6 +174,14 @@
               <i class="nav-icon fas fa-image"></i>
               <p>
                 Photo Gallery
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('admin.video.list') }}" class="nav-link">
+              <i class="nav-icon fas fa-video"></i>
+              <p>
+                Video
               </p>
             </a>
           </li>

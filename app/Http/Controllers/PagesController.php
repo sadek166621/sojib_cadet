@@ -17,10 +17,14 @@ use App\Models\Admin\Formdownload;
 use App\Models\Admin\Student;
 use App\Models\Admin\Group;
 use App\Models\Admin\Exam;
+use App\Models\Admin\Branch;
 use App\Models\Admin\Classroutine;
 use App\Models\Admin\Examroutine;
 use App\Models\Admin\Result;
 use App\Models\Admin\Academic;
+use App\Models\Admin\Page;
+use App\Models\Admin\video;
+use App\Models\Admin\Resultpdf;
 use DB;
 use Toastr;
 
@@ -305,6 +309,55 @@ class PagesController extends Controller
         $data['academics'] = Academic::where('type' ,'=' , 6)->where('status' , '=' , 1)->latest()->get();
         return view('frontend.humanities', $data);
     }
+
+    // =======================Page ====================
+    public function branches(){
+        $data['setting'] = Setting::first();
+        $data['sliders'] = Slider::where('status', 1)->get();
+        $data['dhaka'] = Branch::where('devision',1)->where('status',1)->orderBy('id','desc')->get();
+        $data['chattogram'] = Branch::where('devision',2)->where('status',1)->orderBy('id','desc')->get();
+        $data['rajshahi'] = Branch::where('devision',3)->where('status',1)->orderBy('id','desc')->get();
+        $data['rangpur'] = Branch::where('devision',4)->where('status',1)->orderBy('id','desc')->get();
+        $data['khulna'] = Branch::where('devision',5)->where('status',1)->orderBy('id','desc')->get();
+        $data['barishal'] = Branch::where('devision',6)->where('status',1)->orderBy('id','desc')->get();
+        $data['sylhet'] = Branch::where('devision',7)->where('status',1)->orderBy('id','desc')->get();
+        $data['mymensingh'] = Branch::where('devision',8)->where('status',1)->orderBy('id','desc')->get();
+        return view('frontend.branch', $data);
+    }
+
+    public function resultpdf(){
+        $data['setting'] = Setting::first();
+        $data['sliders'] = Slider::where('status', 1)->get();
+        $data['pdfs'] = Resultpdf::where('status',1)->orderBy('id','desc')->get();
+        return view('frontend.result-pdf', $data);
+    }
+
+    public function residentialinformation(){
+        $data['setting'] = Setting::first();
+        $data['sliders'] = Slider::where('status', 1)->get();
+        $data['page'] = Page::first();
+        return view('frontend.residential', $data);
+    }
+    public function bestsuccess(){
+        $data['setting'] = Setting::first();
+        $data['sliders'] = Slider::where('status', 1)->get();
+        $data['page'] = Page::first();
+        return view('frontend.bestsuccess', $data);
+    }
+
+    public function branchapplication(){
+        $data['setting'] = Setting::first();
+        $data['sliders'] = Slider::where('status', 1)->get();
+        $data['page'] = Page::first();
+        return view('frontend.branch-application', $data);
+    }
+    public function video(){
+        $data['setting'] = Setting::first();
+        $data['sliders'] = Slider::where('status', 1)->get();
+        $data['videos'] = video::orderBy('id', 'desc')->get();
+        return view('frontend.video', $data);
+    }
+
     public function resultlist(){
         $data['setting'] = Setting::first();
         $data['sliders'] = Slider::where('status', 1)->get();
@@ -332,15 +385,15 @@ class PagesController extends Controller
         ->first();
         if($reg){
             $data['result'] = DB::table('results')
-        ->join('students', 'students.id', '=', 'results.student_id')
-        ->select('results.*', 'students.first_name','students.last_name','students.image','students.father_name','students.mother_name')
-        ->where('results.roll','=', $request->roll)
-        ->where('results.class','=',$request->class)
-         ->where('results.section','=',$request->section)
-         ->where('results.exam','=',$request->exam)
-        ->first();
-        Toastr::success('Here It Is!', 'Success', ["positionClass" => "toast-top-right"]);
-        return view('frontend.result-list',$data);
+            ->join('students', 'students.id', '=', 'results.student_id')
+            ->select('results.*', 'students.first_name','students.last_name','students.image','students.father_name','students.mother_name')
+            ->where('results.roll','=', $request->roll)
+            ->where('results.class','=',$request->class)
+            ->where('results.section','=',$request->section)
+            ->where('results.exam','=',$request->exam)
+            ->first();
+            Toastr::success('Here It Is!', 'Success', ["positionClass" => "toast-top-right"]);
+            return view('frontend.result-list',$data);
         }
         else{
             Toastr::error('No Result Found', 'Error', ["positionClass" => "toast-top-right"]);

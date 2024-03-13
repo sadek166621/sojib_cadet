@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Admin\Setting;
+use App\Models\Admin\Teacher;
+use App\Models\Admin\Student;
+use App\Models\Admin\Department;
+use App\Models\Admin\Staff;
 use Carbon\Carbon;
 
 class DashboardController extends Controller
@@ -18,7 +22,11 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard.index');
+        $data['department'] = Department::count();
+        $data['teacher'] = Teacher::count();
+        $data['student'] = Student::count();
+        $data['staff'] = Staff::count();
+        return view('admin.dashboard.index',$data);
     }
 
     /**

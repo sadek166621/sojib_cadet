@@ -8,8 +8,12 @@ use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\NoticeController;
+use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\PhotoController;
+use App\Http\Controllers\Admin\BranchesController;
+use App\Http\Controllers\Admin\ResultpdfController;
+use App\Http\Controllers\Admin\VideoController;
 use App\Http\Controllers\Admin\AcademicController;
 use App\Http\Controllers\Admin\GroupController;
 use App\Http\Controllers\Admin\FromdownloadController;
@@ -184,6 +188,44 @@ Route::prefix('admin')->as('admin.')->group(function () {
             Route::post('/update/{id}', [GroupController::class, 'update'])->name('update');
             Route::get('/delete/{id}', [GroupController::class, 'destroy'])->name('delete');
         });
+        Route::group(['as' => 'page.', 'prefix' => 'page'], function () {
+            Route::get('/list', [PageController::class, 'index'])->name('list');
+            Route::get('/add', [PageController::class, 'create'])->name('add');
+            Route::post('/submit', [PageController::class, 'store'])->name('store');
+            Route::get('/edit/{id}', [PageController::class, 'edit'])->name('edit');
+            Route::post('/update/{id}', [PageController::class, 'update'])->name('update');
+            Route::get('/delete/{id}', [PageController::class, 'destroy'])->name('delete');
+        });
+        // ==========================branches=============================
+
+        Route::group(['as' => 'branches.', 'prefix' => 'branches'], function () {
+            Route::get('/list', [BranchesController::class, 'index'])->name('list');
+            Route::get('/add', [BranchesController::class, 'create'])->name('add');
+            Route::post('/submit', [BranchesController::class, 'store'])->name('store');
+            Route::get('/edit/{id}', [BranchesController::class, 'edit'])->name('edit');
+            Route::post('/update/{id}', [BranchesController::class, 'update'])->name('update');
+            Route::get('/delete/{id}', [BranchesController::class, 'destroy'])->name('delete');
+        });
+// ==========================End branches =========================================
+
+        Route::group(['as' => 'video.', 'prefix' => 'video'], function () {
+            Route::get('/list', [VideoController::class, 'index'])->name('list');
+            Route::get('/add', [VideoController::class, 'create'])->name('add');
+            Route::post('/submit', [VideoController::class, 'store'])->name('store');
+            Route::get('/edit/{id}', [VideoController::class, 'edit'])->name('edit');
+            Route::post('/update/{id}', [VideoController::class, 'update'])->name('update');
+            Route::get('/delete/{id}', [VideoController::class, 'destroy'])->name('delete');
+        });
+
+        Route::group(['as' => 'result-pdf.', 'prefix' => 'result-pdf'], function () {
+            Route::get('/list', [ResultpdfController::class, 'index'])->name('list');
+            Route::get('/add', [ResultpdfController::class, 'create'])->name('add');
+            Route::post('/submit', [ResultpdfController::class, 'store'])->name('store');
+            Route::get('/edit/{id}', [ResultpdfController::class, 'edit'])->name('edit');
+            Route::post('/update/{id}', [ResultpdfController::class, 'update'])->name('update');
+            Route::get('/delete/{id}', [ResultpdfController::class, 'destroy'])->name('delete');
+        });
+
         Route::group(['as' => 'result.', 'prefix' => 'result'], function () {
             Route::get('/list', [ResultController::class, 'index'])->name('list');
             Route::get('/add', [ResultController::class, 'create'])->name('add');
@@ -250,3 +292,10 @@ Route::get('/classseven', [PagesController::class, 'classseven'])->name('classse
 Route::get('/classeight', [PagesController::class, 'classeight'])->name('classeight');
 Route::get('/admission-related', [PagesController::class, 'admissionrelated'])->name('admission-related');
 Route::get('/form-download', [PagesController::class, 'formdownload'])->name('form-download');
+
+Route::get('/residential-information', [PagesController::class, 'residentialinformation'])->name('residential-information');
+Route::get('/best-success', [PagesController::class, 'bestsuccess'])->name('best-success');
+Route::get('/branch-application', [PagesController::class, 'branchapplication'])->name('branch-application');
+Route::get('/video', [PagesController::class, 'video'])->name('video');
+Route::get('/result-pdf', [PagesController::class, 'resultpdf'])->name('result-pdf');
+Route::get('/branches', [PagesController::class, 'branches'])->name('branches');

@@ -4,10 +4,10 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Photo Gallery</h1>
+        <h1>Video</h1>
       </div>
       <div class="col-sm-6">
-        <a href="{{ route('admin.photogallery.add') }}" class="btn btn-info float-right">Add New</a>
+        <a href="{{ route('admin.video.add') }}" class="btn btn-info float-right">Add New</a>
       </div>
     </div>
   </div><!-- /.container-fluid -->
@@ -38,29 +38,29 @@
               <thead>
                 <tr>
                   <th>SL</th>
-                  <th>Picture</th>
+                  <th>Link</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                @if (count($photogallery) > 0)
-                  @foreach ($photogallery as $key => $photogallery)
+                @if (count($videos) > 0)
+                  @foreach ($videos as $key => $video)
                     <tr>
                       <td>{{ $key+1 }}</td>
 
                       <td>
-                        <img src="{{ asset('assets') }}/images/uploads/photogallerys/{{ $photogallery->image }}" alt="photogallery image" width="100px" height="100px">
-                      </td>
+                        {{ $video->link }}
+                        </td>
                       <td>
-                        @if ($photogallery->status == 1)
+                        @if ($video->status == 1)
                           <span class="badge bg-success">Active</span>
                         @else
                           <span class="badge bg-danger">Inactive</span>
                         @endif
                       </td>
                       <td>
-                        <a href="{{ route('admin.photogallery.edit', $photogallery->id) }}" class="btn btn-info"><i class="fas fa-edit"></i> Edit</a>
-                        <a href="{{ route('admin.photogallery.delete', $photogallery->id) }}" class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
+                        <a href="{{ route('admin.video.edit', $video->id) }}" class="btn btn-info"><i class="fas fa-edit"></i> Edit</a>
+                        <a href="{{ route('admin.video.delete', $video->id) }}" onclick="if(!confirm('Are You Sure?')){return false}"  class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
                       </td>
                     </tr>
                   @endforeach
